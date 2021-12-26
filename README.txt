@@ -40,24 +40,34 @@ Ab .NetFramework 4.7: TLS 1.2 (sowie 1.1 und 1.0)
 Windows 10 seit Update May 2019: TLS 1.3: Muss aber in der Regitry aktiviert werden
 
 ------------------------------------------------------------------------------------------------------
-Client-4.8-App-TLS 	Client-System-TLS 	Server-4.8-App-TLS 	Server-System-TLS					Ergbnis
+Client-4.8-App-TLS 	Client-System-TLS 	Server-4.8-App-TLS 	Server-System-TLS					        Ergbnis
 ------------------------------------------------------------------------------------------------------
--					disbled 1.3			alles				disbled: 1.1, 1.2, 1.3				1.0
-1.0					disbled 1.3			alles				disbled: 1.1, 1.2, 1.3				1.0
-1.1					disbled 1.3			alles				disbled: 1.1, 1.2, 1.3				Fehler
-1.2					disbled 1.3			alles				disbled: 1.1, 1.2, 1.3				Fehler
-1.3					disbled 1.3			alles				disbled: 1.1, 1.2, 1.3				Fehler
+-				            disabled 1.3			    alles				          disabled: 1.1, 1.2, 1.3		        1.0
+1.0				          disabled 1.3			    alles				          disabled: 1.1, 1.2, 1.3		        1.0
+1.1				          disabled 1.3			    alles				          disabled: 1.1, 1.2, 1.3		        Fehler
+1.2				          disabled 1.3			    alles				          disabled: 1.1, 1.2, 1.3		        Fehler
+1.3			            disabled 1.3			    alles				          disabled: 1.1, 1.2, 1.3		        Fehler
 
--					disbled 1.3			1.1					disbled: 1.1, 1.2, 1.3				1.0
-1.0					disbled 1.3			1.2					disbled: 1.1, 1.2, 1.3				1.0
-1.0					disbled 1.3			1.3					disbled: 1.1, 1.2, 1.3				1.0
+-				            disabled 1.3			    1.1					          disabled: 1.1, 1.2, 1.3				    1.0
+1.0				          disabled 1.3			    1.2					          disabled: 1.1, 1.2, 1.3				    1.0
+1.0				          disabled 1.3			    1.3					          disabled: 1.1, 1.2, 1.3				    1.0
 
-1.3					disbled 1.3			1.3					disbled: 1.1, 1.2, 1.3				Fehler
-
-------------------------------------------------------------------------------------------------------
-
-1.3					disbled 1.3			1.3					disbled: 1.1, 1.2 enabled: 1.3		Fehler
+1.3	        		    disabled 1.3			    1.3					          disabled: 1.1, 1.2, 1.3			      Fehler
 
 ------------------------------------------------------------------------------------------------------
 
-1.3					enabled 1.3			1.3					disbled: 1.1, 1.2 enabled: 1.3		Fehler
+1.3					        disabled 1.3			    1.3					          disabled: 1.1, 1.2 enabled: 1.3		Fehler
+
+------------------------------------------------------------------------------------------------------
+
+1.3					        enabled 1.3			    1.3					            disabled: 1.1, 1.2 enabled: 1.3		Fehler
+
+------------------------------------------------------------------------------------------------------
+
+1.1                 enabled 1.3         1.3                     disabled: 1.2 enabled: 1.1 1.3    1.1
+1.2                 enabled 1.3         1.3                     disabled: 1.2 enabled: 1.1 1.3    Fehler
+
+
+
+Mit einer .Net6-Anwendung und gesetzter TLS 1.3 in der APP und mit RegistryEinstellung TLS 1.3 Enabled 1 / DisabledByDefault 0 auf für Server und Client
+kommt es dennoch zu Fehlern. Dies scheint aktuell noch ein Bug in der TLS 1.3 Integration in .Net6 zu sein.
